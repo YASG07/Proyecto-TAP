@@ -8,12 +8,16 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import javax.swing.JLabel;
 
 /**
  *
  * @author yael_
  */
 public class MenuOption extends javax.swing.JPanel implements Serializable, MouseListener{
+private String text;
+private int labels;
+private JLabel etiquetas[];
 
     /**
      * Creates new form MenuOption
@@ -22,6 +26,14 @@ public class MenuOption extends javax.swing.JPanel implements Serializable, Mous
         initComponents();
         Menu.setVisible(false);
         Contenedor.addMouseListener(this);
+        Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt){
+                Menu.setVisible(true);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt){
+                Menu.setVisible(false);
+            }
+        });
     }
 
     /**
@@ -42,6 +54,7 @@ public class MenuOption extends javax.swing.JPanel implements Serializable, Mous
         setLayout(new java.awt.BorderLayout());
 
         Contenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Contenedor.setOpaque(false);
         Contenedor.setLayout(new java.awt.BorderLayout());
 
         Opcion.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -96,13 +109,33 @@ public class MenuOption extends javax.swing.JPanel implements Serializable, Mous
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        Contenedor.setOpaque(true);
         Contenedor.setBackground(Color.blue);
         Menu.setVisible(true);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        Contenedor.setBackground(new Color(240,240,240));
+        Contenedor.setOpaque(false);
         Menu.setVisible(false);
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        Opcion.setText(text);
+    }
+
+    public int getLabels() {
+        return labels;
+    }
+
+    public void setLabels(int labels) {
+        this.labels = labels;
+    }
+    
+    
 }
