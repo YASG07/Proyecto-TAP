@@ -4,17 +4,53 @@
  */
 package MenuPrincipal;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.Serializable;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author yael_
  */
-public class Carrucel extends javax.swing.JPanel {
-
+public class Carrucel extends javax.swing.JPanel implements Serializable{
+private ImageIcon iconos [];
+int contador = 0;
     /**
      * Creates new form Carrucel
      */
     public Carrucel() {
         initComponents();
+        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contador = contador + 1;
+                if(contador > 2)
+                    contador = 0;
+                Imagen.setIcon(new ImageIcon(getClass().getResource("/Imagenes/"+contador+".png")));
+                System.out.println(contador+"");
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAnterior.setIcon(new ImageIcon(getClass().getResource("/Imagenes/AnteriorSlc.png")));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAnterior.setIcon(new ImageIcon(getClass().getResource("/Imagenes/Anterior.png")));
+            }
+        });
+        btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contador = contador - 1;
+                if(contador < 0)
+                    contador = 2;
+                Imagen.setIcon(new ImageIcon(getClass().getResource("/Imagenes/"+contador+".png")));
+                System.out.println(contador+"");
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSiguiente.setIcon(new ImageIcon(getClass().getResource("/Imagenes/SiguienteSlc.png")));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSiguiente.setIcon(new ImageIcon(getClass().getResource("/Imagenes/Siguiente.png")));
+            }
+        });
     }
 
     /**
@@ -26,19 +62,38 @@ public class Carrucel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        btnAnterior = new javax.swing.JLabel();
+        btnSiguiente = new javax.swing.JLabel();
+        Imagen = new javax.swing.JLabel();
+
+        setOpaque(false);
+        setLayout(new java.awt.BorderLayout());
+
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Anterior.png"))); // NOI18N
+        add(btnAnterior, java.awt.BorderLayout.LINE_START);
+
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Siguiente.png"))); // NOI18N
+        add(btnSiguiente, java.awt.BorderLayout.LINE_END);
+
+        Imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.png"))); // NOI18N
+        add(Imagen, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Imagen;
+    private javax.swing.JLabel btnAnterior;
+    private javax.swing.JLabel btnSiguiente;
     // End of variables declaration//GEN-END:variables
-}
+
+    public ImageIcon[] getIconos() {
+        return iconos;
+    }
+
+    public void setIconos(ImageIcon[] iconos) {
+        this.iconos = iconos;
+    }
+
+    
+}//class

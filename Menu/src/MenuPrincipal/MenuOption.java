@@ -16,7 +16,7 @@ import javax.swing.JLabel;
  */
 public class MenuOption extends javax.swing.JPanel implements Serializable, MouseListener{
 private String text;
-private int labels;
+private int opciones;
 private JLabel etiquetas[];
 
     /**
@@ -121,21 +121,22 @@ private JLabel etiquetas[];
     }
 
     public String getText() {
-        return text;
+        return Opcion.getText();
     }
 
     public void setText(String text) {
-        this.text = text;
         Opcion.setText(text);
     }
 
-    public int getLabels() {
-        return labels;
+    public int getOpciones() {
+        return etiquetas.length;
     }
 
-    public void setLabels(int labels) {
-        this.labels = labels;
+    public void setOpciones(int opciones) {
+         
     }
+
+    
     
     
 }
