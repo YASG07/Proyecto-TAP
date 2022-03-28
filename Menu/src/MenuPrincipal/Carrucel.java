@@ -7,6 +7,7 @@ package MenuPrincipal;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.ImageIcon;
  * @author yael_
  */
 public class Carrucel extends javax.swing.JPanel implements Serializable{
-private ImageIcon iconos [];
+private Icon iconos [];
 int contador = 0;
     /**
      * Creates new form Carrucel
@@ -22,31 +23,35 @@ int contador = 0;
     public Carrucel() {
         initComponents();
         btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contador = contador + 1;
-                if(contador > 2)
-                    contador = 0;
-                Imagen.setIcon(new ImageIcon(getClass().getResource("/Imagenes/"+contador+".png")));
-                System.out.println(contador+"");
-            }
+                contador--;
+                if(contador < 0)
+                    contador = 2;
+                Imagen.setIcon(new ImageIcon(getClass().getResource("/Imagenes/"+contador+".png")));    
+            }//Cambia la imagen del carrucel a la anterior
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAnterior.setIcon(new ImageIcon(getClass().getResource("/Imagenes/AnteriorSlc.png")));
             }
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAnterior.setIcon(new ImageIcon(getClass().getResource("/Imagenes/Anterior.png")));
             }
         });
         btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contador = contador - 1;
-                if(contador < 0)
-                    contador = 2;
+                contador++;
+                if(contador > 2)
+                    contador = 0;
                 Imagen.setIcon(new ImageIcon(getClass().getResource("/Imagenes/"+contador+".png")));
-                System.out.println(contador+"");
-            }
+            }//Cambia la imagen del carrucel a la siguiente
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSiguiente.setIcon(new ImageIcon(getClass().getResource("/Imagenes/SiguienteSlc.png")));
             }
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSiguiente.setIcon(new ImageIcon(getClass().getResource("/Imagenes/Siguiente.png")));
             }
@@ -76,7 +81,6 @@ int contador = 0;
         add(btnSiguiente, java.awt.BorderLayout.LINE_END);
 
         Imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.png"))); // NOI18N
         add(Imagen, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,13 +91,15 @@ int contador = 0;
     private javax.swing.JLabel btnSiguiente;
     // End of variables declaration//GEN-END:variables
 
-    public ImageIcon[] getIconos() {
+    public Icon[] getIconos() {
         return iconos;
     }
 
-    public void setIconos(ImageIcon[] iconos) {
+    public void setIconos(Icon[] iconos) {
         this.iconos = iconos;
     }
+
+   
 
     
 }//class

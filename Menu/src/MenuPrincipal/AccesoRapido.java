@@ -4,17 +4,46 @@
  */
 package MenuPrincipal;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.io.Serializable;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author yael_
  */
-public class AccesoRapido extends javax.swing.JPanel {
-
+public class AccesoRapido extends javax.swing.JPanel implements Serializable {
+private String Texto;
+private Icon Icono;
     /**
      * Creates new form AccesoRapido
      */
     public AccesoRapido() {
         initComponents();
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setOpaque(true);
+                    setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    lblImagen.setOpaque(false);
+                    setBackground(Color.darkGray);
+                    lblTexto.setFont(new Font("Corbel", Font.BOLD,20));
+                    lblTexto.setForeground(Color.blue);
+                }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setOpaque(false);
+                    setCursor(null);
+                    lblImagen.setOpaque(true);
+                    lblTexto.setFont(new Font("Corbel", Font.PLAIN,18));
+                    lblTexto.setForeground(Color.black);
+                }
+        });
     }
 
     /**
@@ -26,19 +55,44 @@ public class AccesoRapido extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        lblImagen = new javax.swing.JLabel();
+        lblTexto = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
+        setLayout(new java.awt.BorderLayout());
+
+        lblImagen.setBackground(new java.awt.Color(255, 255, 255));
+        lblImagen.setOpaque(true);
+        add(lblImagen, java.awt.BorderLayout.CENTER);
+
+        lblTexto.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        lblTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTexto.setText("Texto");
+        add(lblTexto, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
+    public String getTexto() {
+        return lblTexto.getText();
+    }
+
+    public void setTexto(String Texto) {
+        lblTexto.setText(Texto);
+    }
+
+    public Icon getIcono() {
+        return Icono;
+    }
+
+    public void setIcono(Icon Icono) {
+        lblImagen.setIcon(Icono);
+    }
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }

@@ -169,7 +169,7 @@ public class Login extends javax.swing.JFrame implements ActionListener{
     private void jpSpanishMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSpanishMouseEntered
         jpSpanish.setOpaque(true);
     }//GEN-LAST:event_jpSpanishMouseEntered
-
+    @Override
     public void actionPerformed(java.awt.event.ActionEvent evt){
         if(txtUsuario.getText().equals("admin") && txtPassword.getText().equals("admin")){
             Main ventana = new Main();
@@ -185,7 +185,6 @@ public class Login extends javax.swing.JFrame implements ActionListener{
                lblError2.setText("Contraseña incorrecta");
                lblError1.setText("");
         }//if Contraseña incorrecta
-        //showMessageDialog(Login.this, "Sí funciona.");
     }//action performed ventana manejador de eventos
     
     class Manejador implements MouseListener{
